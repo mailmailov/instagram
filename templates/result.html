@@ -2,7 +2,9 @@
 <html lang="az">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
     <title>Video hazırdır</title>
 
     <link rel="stylesheet"
@@ -11,47 +13,64 @@
 
 <body>
 
-<div class="card result-card">
+<div class="video-page">
 
-    <div class="success">
-        ✓
+    <div class="top-bar">
+        <a href="{{ url_for('index') }}" class="back-btn">
+            ← Geri
+        </a>
+
+        <span class="page-title">
+            Video
+        </span>
     </div>
 
-    <h1>Video hazırdır</h1>
+    <div class="video-container">
 
-    <p>Videonu indi saytda izləyə bilərsən.</p>
-
-    <!-- VIDEO PLAYER -->
-    <video
-        class="video-player"
-        controls
-        playsinline
-        preload="metadata"
-    >
-        <source
-            src="{{ video_url }}"
-            type="video/mp4"
+        <video
+            class="video-player"
+            controls
+            playsinline
+            preload="metadata"
         >
+            <source
+                src="{{ video_url }}"
+                type="video/mp4"
+            >
 
-        Brauzeriniz video formatını dəstəkləmir.
-    </video>
+            Brauzeriniz video formatını dəstəkləmir.
+        </video>
 
-    <!-- DOWNLOAD BUTTON -->
-    <a
-        class="button"
-        href="{{ video_url }}"
-        download
-    >
-        VIDEONU ENDİR
-    </a>
+    </div>
 
-    <!-- BACK BUTTON -->
-    <a
-        class="back"
-        href="{{ url_for('index') }}"
-    >
-        ← Başqa video yüklə
-    </a>
+    <div class="video-info">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h1>Video hazırdır</h1>
+
+        <p>
+            Videoya baxa və telefonuna endirə bilərsən.
+        </p>
+
+        <a
+            href="{{ video_url }}"
+            download
+            class="download-button"
+        >
+            ↓ Videonu endir
+        </a>
+
+        <a
+            href="{{ url_for('index') }}"
+            class="new-video"
+        >
+            + Yeni video yüklə
+        </a>
+
+    </div>
 
 </div>
 
