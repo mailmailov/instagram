@@ -1,29 +1,89 @@
 <!doctype html>
 <html lang="az">
+
 <head>
+
     <meta charset="utf-8">
+
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-    <title>Video hazırdır</title>
+    <title id="pageTitle">
+        Video hazırdır
+    </title>
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='style.css') }}">
+
 </head>
+
 
 <body>
 
+
 <div class="video-page">
 
+
+    <!-- =========================
+         TOP BAR
+    ========================== -->
+
     <div class="top-bar">
-        <a href="{{ url_for('index') }}" class="back-btn">
+
+        <a href="{{ url_for('index') }}"
+           class="back-btn"
+           id="backButton">
+
             ← Geri
+
         </a>
 
-        <span class="page-title">
+
+        <span class="page-title"
+              id="pageTitleText">
+
             Video
+
         </span>
+
+
+        <!-- DİL SEÇİMİ -->
+
+        <div class="language-box result-language">
+
+            <button type="button"
+                    class="language-btn"
+                    onclick="changeLanguage('az')">
+                AZ
+            </button>
+
+            <button type="button"
+                    class="language-btn"
+                    onclick="changeLanguage('en')">
+                EN
+            </button>
+
+            <button type="button"
+                    class="language-btn"
+                    onclick="changeLanguage('ru')">
+                RU
+            </button>
+
+            <button type="button"
+                    class="language-btn"
+                    onclick="changeLanguage('tr')">
+                TR
+            </button>
+
+        </div>
+
     </div>
+
+
+
+    <!-- =========================
+         VIDEO
+    ========================== -->
 
     <div class="video-container">
 
@@ -33,46 +93,311 @@
             playsinline
             preload="metadata"
         >
+
             <source
                 src="{{ video_url }}"
                 type="video/mp4"
             >
 
-            Brauzeriniz video formatını dəstəkləmir.
+            <span id="videoError">
+                Brauzeriniz video formatını dəstəkləmir.
+            </span>
+
         </video>
 
     </div>
 
+
+
+    <!-- =========================
+         VIDEO INFO
+    ========================== -->
+
     <div class="video-info">
 
+
         <div class="success-icon">
+
             ✓
+
         </div>
 
-        <h1>Video hazırdır</h1>
 
-        <p>
+        <h1 id="readyTitle">
+
+            Video hazırdır
+
+        </h1>
+
+
+        <p id="readyDescription">
+
             Videoya baxa və telefonuna endirə bilərsən.
+
         </p>
+
+
+        <!-- DOWNLOAD -->
 
         <a
             href="{{ video_url }}"
             download
             class="download-button"
+            id="downloadButton"
         >
+
             ↓ Videonu endir
+
         </a>
+
+
+        <!-- NEW VIDEO -->
 
         <a
             href="{{ url_for('index') }}"
             class="new-video"
+            id="newVideoButton"
         >
+
             + Yeni video yüklə
+
         </a>
+
 
     </div>
 
+
 </div>
 
+
+
+<script>
+
+
+/* =========================================
+   DİLLƏR
+========================================= */
+
+
+const translations = {
+
+
+    az: {
+
+        pageTitle: "Video hazırdır",
+
+        pageTitleText: "Video",
+
+        back: "← Geri",
+
+        readyTitle: "Video hazırdır",
+
+        description:
+            "Videoya baxa və telefonuna endirə bilərsən.",
+
+        download:
+            "↓ Videonu endir",
+
+        newVideo:
+            "+ Yeni video yüklə",
+
+        videoError:
+            "Brauzeriniz video formatını dəstəkləmir."
+
+    },
+
+
+    en: {
+
+        pageTitle: "Video Ready",
+
+        pageTitleText: "Video",
+
+        back: "← Back",
+
+        readyTitle: "Video is ready",
+
+        description:
+            "You can watch the video and download it to your phone.",
+
+        download:
+            "↓ Download Video",
+
+        newVideo:
+            "+ Download another video",
+
+        videoError:
+            "Your browser does not support this video format."
+
+    },
+
+
+    ru: {
+
+        pageTitle: "Видео готово",
+
+        pageTitleText: "Видео",
+
+        back: "← Назад",
+
+        readyTitle: "Видео готово",
+
+        description:
+            "Вы можете посмотреть видео и скачать его на телефон.",
+
+        download:
+            "↓ Скачать видео",
+
+        newVideo:
+            "+ Скачать другое видео",
+
+        videoError:
+            "Ваш браузер не поддерживает этот формат видео."
+
+    },
+
+
+    tr: {
+
+        pageTitle: "Video hazır",
+
+        pageTitleText: "Video",
+
+        back: "← Geri",
+
+        readyTitle: "Video hazır",
+
+        description:
+            "Videoyu izleyebilir ve telefonunuza indirebilirsiniz.",
+
+        download:
+            "↓ Videoyu indir",
+
+        newVideo:
+            "+ Yeni video indir",
+
+        videoError:
+            "Tarayıcınız bu video formatını desteklemiyor."
+
+    }
+
+};
+
+
+
+/* =========================================
+   DİLİ DƏYİŞ
+========================================= */
+
+
+function changeLanguage(language) {
+
+
+    const text =
+        translations[language];
+
+
+    if (!text) {
+
+        return;
+
+    }
+
+
+    /* HTML DİLİ */
+
+    document.documentElement.lang =
+        language;
+
+
+    /* TITLE */
+
+    document.getElementById(
+        "pageTitle"
+    ).textContent =
+        text.pageTitle;
+
+
+    document.getElementById(
+        "pageTitleText"
+    ).textContent =
+        text.pageTitleText;
+
+
+    /* GERİ */
+
+    document.getElementById(
+        "backButton"
+    ).textContent =
+        text.back;
+
+
+    /* READY */
+
+    document.getElementById(
+        "readyTitle"
+    ).textContent =
+        text.readyTitle;
+
+
+    document.getElementById(
+        "readyDescription"
+    ).textContent =
+        text.description;
+
+
+    /* DOWNLOAD */
+
+    document.getElementById(
+        "downloadButton"
+    ).textContent =
+        text.download;
+
+
+    /* NEW VIDEO */
+
+    document.getElementById(
+        "newVideoButton"
+    ).textContent =
+        text.newVideo;
+
+
+    /* VIDEO ERROR */
+
+    document.getElementById(
+        "videoError"
+    ).textContent =
+        text.videoError;
+
+
+    /* DİLİ YADDA SAXLA */
+
+    localStorage.setItem(
+        "language",
+        language
+    );
+
+}
+
+
+
+/* =========================================
+   ƏVVƏLKİ DİLİ GÖTÜR
+========================================= */
+
+
+const savedLanguage =
+    localStorage.getItem("language") || "az";
+
+
+changeLanguage(
+    savedLanguage
+);
+
+
+</script>
+
+
 </body>
+
 </html>
