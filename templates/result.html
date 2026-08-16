@@ -2,21 +2,58 @@
 <html lang="az">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Hazırdır</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-<div class="card">
-    <div class="success">✓</div>
-    <h1>Video hazırdır</h1>
-    <p>Video serverə yükləndi.</p>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Video hazırdır</title>
 
-    <a class="button" href="{{ url_for('files', filename=filename) }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="card result-card">
+
+    <div class="success">
+        ✓
+    </div>
+
+    <h1>Video hazırdır</h1>
+
+    <p>Videonu indi saytda izləyə bilərsən.</p>
+
+    <!-- VIDEO PLAYER -->
+    <video
+        class="video-player"
+        controls
+        playsinline
+        preload="metadata"
+    >
+        <source
+            src="{{ video_url }}"
+            type="video/mp4"
+        >
+
+        Brauzeriniz video formatını dəstəkləmir.
+    </video>
+
+    <!-- DOWNLOAD BUTTON -->
+    <a
+        class="button"
+        href="{{ video_url }}"
+        download
+    >
         VIDEONU ENDİR
     </a>
 
-    <a class="back" href="{{ url_for('index') }}">← Başqa video yüklə</a>
+    <!-- BACK BUTTON -->
+    <a
+        class="back"
+        href="{{ url_for('index') }}"
+    >
+        ← Başqa video yüklə
+    </a>
+
 </div>
+
 </body>
 </html>
