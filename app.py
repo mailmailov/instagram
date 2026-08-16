@@ -57,7 +57,11 @@ def download_video():
             return redirect(url_for("index"))
 
         filename = os.path.basename(file_path)
-        return render_template("result.html", filename=filename)
+        return render_template(
+    "result.html",
+    filename=filename,
+    video_url=url_for("files", filename=filename)
+)
 
     except Exception as exc:
         # Do not expose server internals to the visitor.
