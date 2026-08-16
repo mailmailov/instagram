@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="az">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Hazırdır</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="card">
+    <div class="success">✓</div>
+    <h1>Video hazırdır</h1>
+    <p>Video serverə yükləndi.</p>
+
+    <a class="button" href="{{ url_for('files', filename=filename) }}">
+        VIDEONU ENDİR
+    </a>
+
+    <a class="back" href="{{ url_for('index') }}">← Başqa video yüklə</a>
+</div>
+</body>
+</html>

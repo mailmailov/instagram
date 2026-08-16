@@ -1,1 +1,45 @@
+<!doctype html>
+<html lang="az">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Instagram Video Yüklə</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="card">
+    <div class="icon">▶</div>
+    <h1>Instagram Video Yüklə</h1>
+    <p>Instagram video linkini aşağıya yapışdır.</p>
 
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <div class="message">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('download_video') }}" method="post" id="form">
+        <input
+            type="url"
+            name="url"
+            placeholder="https://www.instagram.com/reel/..."
+            required
+            autocomplete="off"
+        >
+        <button type="submit" id="btn">VİDEONU YÜKLƏ</button>
+    </form>
+
+    <small>Yalnız açıq/public və istifadə etməyə icazən olan məzmunu endir.</small>
+</div>
+
+<script>
+document.getElementById("form").addEventListener("submit", function () {
+    const btn = document.getElementById("btn");
+    btn.textContent = "YÜKLƏNİR...";
+    btn.disabled = true;
+});
+</script>
+</body>
+</html>
