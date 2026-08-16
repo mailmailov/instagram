@@ -1,45 +1,218 @@
 <!doctype html>
 <html lang="az">
+
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Instagram Video Yüklə</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <title id="pageTitle">Instagram Video Yüklə</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
+
 <div class="card">
-    <div class="icon">▶</div>
-    <h1>Instagram Video Yüklə</h1>
-    <p>Instagram video linkini aşağıya yapışdır.</p>
+
+    <!-- DİL SEÇİMİ -->
+
+    <div class="language-box">
+
+        <button type="button"
+                class="language-btn"
+                onclick="changeLanguage('az')">
+            AZ
+        </button>
+
+        <button type="button"
+                class="language-btn"
+                onclick="changeLanguage('en')">
+            EN
+        </button>
+
+        <button type="button"
+                class="language-btn"
+                onclick="changeLanguage('ru')">
+            RU
+        </button>
+
+        <button type="button"
+                class="language-btn"
+                onclick="changeLanguage('tr')">
+            TR
+        </button>
+
+    </div>
+
+
+    <div class="icon">
+        ▶
+    </div>
+
+
+    <h1 id="title">
+        Instagram Video Yüklə
+    </h1>
+
+
+    <p id="description">
+        Instagram video linkini aşağıya yapışdır.
+    </p>
+
 
     {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        {% for message in messages %}
-          <div class="message">{{ message }}</div>
-        {% endfor %}
-      {% endif %}
+
+        {% if messages %}
+
+            {% for message in messages %}
+
+                <div class="message">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
     {% endwith %}
 
-    <form action="{{ url_for('download_video') }}" method="post" id="form">
+
+    <form
+        action="{{ url_for('download_video') }}"
+        method="post"
+        id="form"
+    >
+
         <input
             type="url"
             name="url"
+            id="urlInput"
             placeholder="https://www.instagram.com/reel/..."
             required
             autocomplete="off"
         >
-        <button type="submit" id="btn">VİDEONU YÜKLƏ</button>
+
+
+        <button
+            type="submit"
+            id="btn"
+        >
+            VİDEONU YÜKLƏ
+        </button>
+
     </form>
 
-    <small>Yalnız açıq/public və istifadə etməyə icazən olan məzmunu endir.</small>
+
+    <small id="notice">
+        Yalnız açıq/public və istifadə etməyə icazən olan məzmunu endir.
+    </small>
+
 </div>
 
+
 <script>
-document.getElementById("form").addEventListener("submit", function () {
-    const btn = document.getElementById("btn");
-    btn.textContent = "YÜKLƏNİR...";
-    btn.disabled = true;
-});
+
+const translations = {
+
+    az: {
+        title: "Instagram Video Yüklə",
+        description: "Instagram video linkini aşağıya yapışdır.",
+        button: "VİDEONU YÜKLƏ",
+        loading: "YÜKLƏNİR...",
+        placeholder: "https://www.instagram.com/reel/...",
+        notice: "Yalnız açıq/public və istifadə etməyə icazən olan məzmunu endir."
+    },
+
+    en: {
+        title: "Instagram Video Downloader",
+        description: "Paste the Instagram video link below.",
+        button: "DOWNLOAD VIDEO",
+        loading: "DOWNLOADING...",
+        placeholder: "https://www.instagram.com/reel/...",
+        notice: "Download only public content that you own or have permission to use."
+    },
+
+    ru: {
+        title: "Загрузка видео Instagram",
+        description: "Вставьте ссылку на видео Instagram ниже.",
+        button: "СКАЧАТЬ ВИДЕО",
+        loading: "ЗАГРУЗКА...",
+        placeholder: "https://www.instagram.com/reel/...",
+        notice: "Скачивайте только общедоступный контент, который вам разрешено использовать."
+    },
+
+    tr: {
+        title: "Instagram Video İndir",
+        description: "Instagram video bağlantısını aşağıya yapıştır.",
+        button: "VİDEOYU İNDİR",
+        loading: "İNDİRİLİYOR...",
+        placeholder: "https://www.instagram.com/reel/...",
+        notice: "Yalnızca herkese açık ve kullanma izniniz olan içerikleri indirin."
+    }
+
+};
+
+
+function changeLanguage(language) {
+
+    const text = translations[language];
+
+    document.documentElement.lang = language;
+
+    document.getElementById("pageTitle").textContent =
+        text.title;
+
+    document.getElementById("title").textContent =
+        text.title;
+
+    document.getElementById("description").textContent =
+        text.description;
+
+    document.getElementById("btn").textContent =
+        text.button;
+
+    document.getElementById("urlInput").placeholder =
+        text.placeholder;
+
+    document.getElementById("notice").textContent =
+        text.notice;
+
+
+    localStorage.setItem(
+        "language",
+        language
+    );
+}
+
+
+/* FORM GÖNDƏRİLƏNDƏ */
+
+document
+    .getElementById("form")
+    .addEventListener("submit", function () {
+
+        const language =
+            localStorage.getItem("language") || "az";
+
+        document.getElementById("btn").textContent =
+            translations[language].loading;
+
+        document.getElementById("btn").disabled = true;
+
+    });
+
+
+/* SON SEÇİLƏN DİL */
+
+const savedLanguage =
+    localStorage.getItem("language") || "az";
+
+changeLanguage(savedLanguage);
+
 </script>
+
 </body>
 </html>
