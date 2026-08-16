@@ -1,1 +1,31 @@
-
+*{box-sizing:border-box}
+body{
+    margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+    background:#101010; color:#fff; font-family:Arial,sans-serif;
+}
+.card{
+    width:min(92%,560px); padding:38px; background:#1c1c1c; border-radius:22px;
+    box-shadow:0 20px 70px rgba(0,0,0,.45); text-align:center;
+}
+.icon,.success{
+    width:64px;height:64px;border-radius:50%;display:grid;place-items:center;
+    margin:0 auto 18px;font-size:28px;background:#e1306c;
+}
+.success{background:#24a148}
+h1{margin:0 0 10px;font-size:30px}
+p{color:#aaa;margin-bottom:28px}
+input{
+    width:100%; padding:16px; border:1px solid #444; border-radius:12px;
+    background:#111;color:#fff;font-size:15px;outline:none;
+}
+input:focus{border-color:#e1306c}
+button,.button{
+    display:block;width:100%;margin-top:15px;padding:16px;border:0;border-radius:12px;
+    background:#e1306c;color:#fff;font-weight:bold;text-decoration:none;cursor:pointer;
+}
+button:disabled{opacity:.6;cursor:wait}
+.message{
+    padding:12px;margin-bottom:15px;border-radius:10px;background:#2a2024;color:#ffb4c7;
+}
+small{display:block;margin-top:20px;color:#777;line-height:1.5}
+.back{display:block;margin-top:20px;color:#aaa;text-decoration:none}
