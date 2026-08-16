@@ -5,15 +5,19 @@
 
     <meta charset="utf-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    >
 
     <title id="pageTitle">
         Video hazırdır
     </title>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
 
 </head>
 
@@ -25,57 +29,72 @@
 
 
     <!-- =========================
-         TOP BAR
+         ÜST PANEL
     ========================== -->
 
     <div class="top-bar">
 
-        <a href="{{ url_for('index') }}"
-           class="back-btn"
-           id="backButton">
 
+        <a
+            href="{{ url_for('index') }}"
+            class="back-btn"
+            id="backButton"
+        >
             ← Geri
-
         </a>
 
 
-        <span class="page-title"
-              id="pageTitleText">
-
+        <span
+            class="page-title"
+            id="pageTitleText"
+        >
             Video
-
         </span>
 
 
         <!-- DİL SEÇİMİ -->
 
-        <div class="language-box result-language">
+        <div class="language-box">
 
-            <button type="button"
-                    class="language-btn"
-                    onclick="changeLanguage('az')">
+
+            <button
+                type="button"
+                class="language-btn"
+                onclick="changeLanguage('az')"
+            >
                 AZ
             </button>
 
-            <button type="button"
-                    class="language-btn"
-                    onclick="changeLanguage('en')">
+
+            <button
+                type="button"
+                class="language-btn"
+                onclick="changeLanguage('en')"
+            >
                 EN
             </button>
 
-            <button type="button"
-                    class="language-btn"
-                    onclick="changeLanguage('ru')">
+
+            <button
+                type="button"
+                class="language-btn"
+                onclick="changeLanguage('ru')"
+            >
                 RU
             </button>
 
-            <button type="button"
-                    class="language-btn"
-                    onclick="changeLanguage('tr')">
+
+            <button
+                type="button"
+                class="language-btn"
+                onclick="changeLanguage('tr')"
+            >
                 TR
             </button>
 
+
         </div>
+
 
     </div>
 
@@ -87,7 +106,9 @@
 
     <div class="video-container">
 
+
         <video
+            id="videoPlayer"
             class="video-player"
             controls
             playsinline
@@ -95,93 +116,154 @@
         >
 
             <source
-                src="{{ video_url }}"
+                src="{{ url_for('files', filename=filename) }}"
                 type="video/mp4"
             >
 
-            <span id="videoError">
-                Brauzeriniz video formatını dəstəkləmir.
-            </span>
+            Brauzeriniz video formatını
+            dəstəkləmir.
 
         </video>
+
 
     </div>
 
 
 
     <!-- =========================
-         VIDEO INFO
+         VIDEO MƏLUMATLARI
     ========================== -->
 
     <div class="video-info">
 
-<div class="video-details">
 
-    <div class="detail-box">
-        <span class="detail-icon">⏱️</span>
+        <!-- UĞUR İŞARƏSİ -->
 
-        <div>
-            <small>Video müddəti</small>
-            <strong id="videoDuration">--</strong>
-        </div>
-    </div>
-
-
-    <div class="detail-box">
-        <span class="detail-icon">📦</span>
-
-        <div>
-            <small>Fayl ölçüsü</small>
-            <strong id="fileSize">--</strong>
-        </div>
-    </div>
-
-</div>
         <div class="success-icon">
-
             ✓
-
         </div>
 
+
+        <!-- BAŞLIQ -->
 
         <h1 id="readyTitle">
-
             Video hazırdır
-
         </h1>
 
 
+        <!-- AÇIQLAMA -->
+
         <p id="readyDescription">
-
             Videoya baxa və telefonuna endirə bilərsən.
-
         </p>
 
 
-        <!-- DOWNLOAD -->
+
+        <!-- =====================
+             MÜDDƏT + ÖLÇÜ
+        ====================== -->
+
+        <div class="video-details">
+
+
+            <!-- MÜDDƏT -->
+
+            <div class="detail-box">
+
+
+                <span class="detail-icon">
+                    ⏱️
+                </span>
+
+
+                <div>
+
+                    <small id="durationLabel">
+                        Video müddəti
+                    </small>
+
+
+                    <strong id="videoDuration">
+                        --
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- FAYL ÖLÇÜSÜ -->
+
+            <div class="detail-box">
+
+
+                <span class="detail-icon">
+                    📦
+                </span>
+
+
+                <div>
+
+                    <small id="sizeLabel">
+                        Fayl ölçüsü
+                    </small>
+
+
+                    <strong id="fileSize">
+                        --
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =========================
+             DOWNLOAD
+        ========================== -->
 
         <a
-            href="{{ video_url }}"
+            href="{{ url_for('files', filename=filename) }}"
             download
             class="download-button"
             id="downloadButton"
         >
-
             ↓ Videonu endir
-
         </a>
 
 
-        <!-- NEW VIDEO -->
+
+        <!-- =========================
+             SHARE
+        ========================== -->
+
+        <button
+            type="button"
+            class="share-button"
+            id="shareButton"
+        >
+            📤 Paylaş
+        </button>
+
+
+
+        <!-- =========================
+             YENİ VİDEO
+        ========================== -->
 
         <a
             href="{{ url_for('index') }}"
             class="new-video"
             id="newVideoButton"
         >
-
             + Yeni video yüklə
-
         </a>
 
 
@@ -195,9 +277,9 @@
 <script>
 
 
-/* =========================================
+/* ==========================================
    DİLLƏR
-========================================= */
+========================================== */
 
 
 const translations = {
@@ -205,100 +287,152 @@ const translations = {
 
     az: {
 
-        pageTitle: "Video hazırdır",
+        pageTitle:
+            "Video hazırdır",
 
-        pageTitleText: "Video",
+        pageTitleText:
+            "Video",
 
-        back: "← Geri",
+        back:
+            "← Geri",
 
-        readyTitle: "Video hazırdır",
+        readyTitle:
+            "Video hazırdır",
 
-        description:
+        readyDescription:
             "Videoya baxa və telefonuna endirə bilərsən.",
+
+        duration:
+            "Video müddəti",
+
+        size:
+            "Fayl ölçüsü",
 
         download:
             "↓ Videonu endir",
 
-        newVideo:
-            "+ Yeni video yüklə",
+        share:
+            "📤 Paylaş",
 
-        videoError:
-            "Brauzeriniz video formatını dəstəkləmir."
+        copied:
+            "✓ Link kopyalandı",
+
+        newVideo:
+            "+ Yeni video yüklə"
 
     },
 
 
     en: {
 
-        pageTitle: "Video Ready",
+        pageTitle:
+            "Video Ready",
 
-        pageTitleText: "Video",
+        pageTitleText:
+            "Video",
 
-        back: "← Back",
+        back:
+            "← Back",
 
-        readyTitle: "Video is ready",
+        readyTitle:
+            "Video is ready",
 
-        description:
+        readyDescription:
             "You can watch the video and download it to your phone.",
+
+        duration:
+            "Video duration",
+
+        size:
+            "File size",
 
         download:
             "↓ Download Video",
 
-        newVideo:
-            "+ Download another video",
+        share:
+            "📤 Share",
 
-        videoError:
-            "Your browser does not support this video format."
+        copied:
+            "✓ Link copied",
+
+        newVideo:
+            "+ Download another video"
 
     },
 
 
     ru: {
 
-        pageTitle: "Видео готово",
+        pageTitle:
+            "Видео готово",
 
-        pageTitleText: "Видео",
+        pageTitleText:
+            "Видео",
 
-        back: "← Назад",
+        back:
+            "← Назад",
 
-        readyTitle: "Видео готово",
+        readyTitle:
+            "Видео готово",
 
-        description:
+        readyDescription:
             "Вы можете посмотреть видео и скачать его на телефон.",
+
+        duration:
+            "Продолжительность",
+
+        size:
+            "Размер файла",
 
         download:
             "↓ Скачать видео",
 
-        newVideo:
-            "+ Скачать другое видео",
+        share:
+            "📤 Поделиться",
 
-        videoError:
-            "Ваш браузер не поддерживает этот формат видео."
+        copied:
+            "✓ Ссылка скопирована",
+
+        newVideo:
+            "+ Скачать другое видео"
 
     },
 
 
     tr: {
 
-        pageTitle: "Video hazır",
+        pageTitle:
+            "Video hazır",
 
-        pageTitleText: "Video",
+        pageTitleText:
+            "Video",
 
-        back: "← Geri",
+        back:
+            "← Geri",
 
-        readyTitle: "Video hazır",
+        readyTitle:
+            "Video hazır",
 
-        description:
+        readyDescription:
             "Videoyu izleyebilir ve telefonunuza indirebilirsiniz.",
+
+        duration:
+            "Video süresi",
+
+        size:
+            "Dosya boyutu",
 
         download:
             "↓ Videoyu indir",
 
-        newVideo:
-            "+ Yeni video indir",
+        share:
+            "📤 Paylaş",
 
-        videoError:
-            "Tarayıcınız bu video formatını desteklemiyor."
+        copied:
+            "✓ Bağlantı kopyalandı",
+
+        newVideo:
+            "+ Yeni video indir"
 
     }
 
@@ -306,9 +440,9 @@ const translations = {
 
 
 
-/* =========================================
-   DİLİ DƏYİŞ
-========================================= */
+/* ==========================================
+   DİL DƏYİŞDİRMƏ
+========================================== */
 
 
 function changeLanguage(language) {
@@ -318,20 +452,9 @@ function changeLanguage(language) {
         translations[language];
 
 
-    if (!text) {
-
-        return;
-
-    }
-
-
-    /* HTML DİLİ */
-
     document.documentElement.lang =
         language;
 
-
-    /* TITLE */
 
     document.getElementById(
         "pageTitle"
@@ -345,15 +468,11 @@ function changeLanguage(language) {
         text.pageTitleText;
 
 
-    /* GERİ */
-
     document.getElementById(
         "backButton"
     ).textContent =
         text.back;
 
-
-    /* READY */
 
     document.getElementById(
         "readyTitle"
@@ -364,10 +483,20 @@ function changeLanguage(language) {
     document.getElementById(
         "readyDescription"
     ).textContent =
-        text.description;
+        text.readyDescription;
 
 
-    /* DOWNLOAD */
+    document.getElementById(
+        "durationLabel"
+    ).textContent =
+        text.duration;
+
+
+    document.getElementById(
+        "sizeLabel"
+    ).textContent =
+        text.size;
+
 
     document.getElementById(
         "downloadButton"
@@ -375,23 +504,17 @@ function changeLanguage(language) {
         text.download;
 
 
-    /* NEW VIDEO */
+    document.getElementById(
+        "shareButton"
+    ).textContent =
+        text.share;
+
 
     document.getElementById(
         "newVideoButton"
     ).textContent =
         text.newVideo;
 
-
-    /* VIDEO ERROR */
-
-    document.getElementById(
-        "videoError"
-    ).textContent =
-        text.videoError;
-
-
-    /* DİLİ YADDA SAXLA */
 
     localStorage.setItem(
         "language",
@@ -402,17 +525,290 @@ function changeLanguage(language) {
 
 
 
-/* =========================================
-   ƏVVƏLKİ DİLİ GÖTÜR
-========================================= */
+/* ==========================================
+   SON SEÇİLƏN DİL
+========================================== */
 
 
 const savedLanguage =
-    localStorage.getItem("language") || "az";
+    localStorage.getItem(
+        "language"
+    ) || "az";
 
 
 changeLanguage(
     savedLanguage
+);
+
+
+
+/* ==========================================
+   VIDEO
+========================================== */
+
+
+const video =
+    document.getElementById(
+        "videoPlayer"
+    );
+
+
+const durationElement =
+    document.getElementById(
+        "videoDuration"
+    );
+
+
+
+/* ==========================================
+   VIDEO MÜDDƏTİ
+========================================== */
+
+
+video.addEventListener(
+    "loadedmetadata",
+    function () {
+
+
+        const totalSeconds =
+            Math.floor(
+                video.duration
+            );
+
+
+        if (
+            !isFinite(
+                totalSeconds
+            )
+        ) {
+
+            durationElement.textContent =
+                "--";
+
+            return;
+
+        }
+
+
+        const minutes =
+            Math.floor(
+                totalSeconds / 60
+            );
+
+
+        const seconds =
+            totalSeconds % 60;
+
+
+        durationElement.textContent =
+            minutes +
+            ":" +
+            String(
+                seconds
+            ).padStart(
+                2,
+                "0"
+            );
+
+    }
+);
+
+
+
+/* ==========================================
+   FAYL ÖLÇÜSÜ
+========================================== */
+
+
+const fileSizeElement =
+    document.getElementById(
+        "fileSize"
+    );
+
+
+fetch(
+    "{{ url_for('files', filename=filename) }}",
+    {
+        method: "HEAD"
+    }
+)
+
+.then(
+    function (response) {
+
+        const size =
+            response.headers.get(
+                "Content-Length"
+            );
+
+
+        if (!size) {
+
+            fileSizeElement.textContent =
+                "--";
+
+            return;
+
+        }
+
+
+        const bytes =
+            parseInt(
+                size
+            );
+
+
+        if (
+            bytes < 1024
+        ) {
+
+            fileSizeElement.textContent =
+                bytes +
+                " B";
+
+        }
+
+
+        else if (
+            bytes < 1024 * 1024
+        ) {
+
+            fileSizeElement.textContent =
+                (
+                    bytes / 1024
+                ).toFixed(1)
+                + " KB";
+
+        }
+
+
+        else {
+
+            fileSizeElement.textContent =
+                (
+                    bytes /
+                    1024 /
+                    1024
+                ).toFixed(2)
+                + " MB";
+
+        }
+
+    }
+)
+
+.catch(
+    function () {
+
+        fileSizeElement.textContent =
+            "--";
+
+    }
+);
+
+
+
+/* ==========================================
+   SHARE
+========================================== */
+
+
+const shareButton =
+    document.getElementById(
+        "shareButton"
+    );
+
+
+shareButton.addEventListener(
+    "click",
+    async function () {
+
+
+        const videoUrl =
+            window.location.origin +
+            "{{ url_for('files', filename=filename) }}";
+
+
+        const currentLanguage =
+            localStorage.getItem(
+                "language"
+            ) || "az";
+
+
+        try {
+
+
+            /* TELEFON SHARE MENYUSU */
+
+
+            if (
+                navigator.share
+            ) {
+
+
+                await navigator.share({
+
+                    title:
+                        "Instagram Video",
+
+                    text:
+                        "Video",
+
+                    url:
+                        videoUrl
+
+                });
+
+
+                return;
+
+            }
+
+
+
+            /* SHARE DƏSTƏKLƏNMİRSƏ
+               LINKİ KOPYALA */
+
+
+            await navigator.clipboard.writeText(
+                videoUrl
+            );
+
+
+            shareButton.textContent =
+                translations[
+                    currentLanguage
+                ].copied;
+
+
+            setTimeout(
+                function () {
+
+                    shareButton.textContent =
+                        translations[
+                            currentLanguage
+                        ].share;
+
+                },
+                2000
+            );
+
+
+        }
+
+
+        catch (error) {
+
+
+            console.log(
+                "Share cancelled:",
+                error
+            );
+
+
+        }
+
+    }
 );
 
 
