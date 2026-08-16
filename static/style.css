@@ -1,389 +1,537 @@
-/* =========================================
-   GLOBAL
-========================================= */
+/* =====================================================
+   RESET
+===================================================== */
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
 
 html {
-    margin: 0;
-    padding: 0;
     width: 100%;
+    min-height: 100%;
+    scroll-behavior: smooth;
 }
 
+
 body {
-    margin: 0;
-    padding: 0;
     width: 100%;
     min-height: 100vh;
 
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
 
-    background: #0f0f0f;
+    background: #08080b;
     color: #ffffff;
+
+    overflow-x: hidden;
 }
 
 
-/* =========================================
-   INDEX PAGE
-========================================= */
+/* =====================================================
+   BACKGROUND
+===================================================== */
 
-.card {
-    width: min(92%, 560px);
+.background-glow {
+    position: fixed;
 
-    margin: 70px auto;
-
-    padding: 30px;
-
-    background: #1b1b1b;
-
-    border: 1px solid #292929;
-
-    border-radius: 22px;
-
-    box-shadow:
-        0 20px 70px rgba(0, 0, 0, 0.45);
-
-    text-align: center;
-}
-
-
-/* =========================================
-   LANGUAGE BUTTONS
-========================================= */
-
-.language-box {
-    width: 100%;
-
-    display: flex;
-
-    justify-content: flex-end;
-
-    align-items: center;
-
-    gap: 6px;
-
-    margin-bottom: 20px;
-}
-
-.language-btn {
-    width: auto;
-
-    min-width: 38px;
-
-    height: 32px;
-
-    margin: 0;
-
-    padding: 0 9px;
-
-    border: 1px solid #444;
-
-    border-radius: 7px;
-
-    background: #111;
-
-    color: #aaa;
-
-    font-size: 11px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s,
-        color 0.2s,
-        border-color 0.2s;
-}
-
-.language-btn:hover {
-    background: #e1306c;
-
-    border-color: #e1306c;
-
-    color: #ffffff;
-}
-
-.language-btn:active {
-    transform: scale(0.96);
-}
-
-
-/* =========================================
-   INSTAGRAM ICON
-========================================= */
-
-.icon {
-    width: 66px;
-    height: 66px;
-
-    margin: 0 auto 18px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
+    width: 420px;
+    height: 420px;
 
     border-radius: 50%;
 
-    background: #e1306c;
+    filter: blur(120px);
 
-    color: white;
+    opacity: 0.18;
 
-    font-size: 28px;
+    pointer-events: none;
 
-    box-shadow:
-        0 8px 25px rgba(225, 48, 108, 0.25);
+    z-index: 0;
 }
 
 
-/* =========================================
-   INDEX TEXT
-========================================= */
+.glow-one {
+    top: -180px;
+    left: -120px;
 
-.card h1 {
-    margin: 0 0 10px;
-
-    color: #ffffff;
-
-    font-size: 30px;
-
-    line-height: 1.2;
-}
-
-.card p {
-    margin: 0 0 26px;
-
-    color: #999999;
-
-    font-size: 15px;
-
-    line-height: 1.5;
+    background: #8b5cf6;
 }
 
 
-/* =========================================
-   FORM
-========================================= */
+.glow-two {
+    right: -160px;
+    bottom: -180px;
 
-#form {
+    background: #ec4899;
+}
+
+
+/* =====================================================
+   APP
+===================================================== */
+
+.app {
+    position: relative;
+
+    z-index: 1;
+
     width: 100%;
-
-    margin: 0;
-}
-
-
-/* =========================================
-   URL INPUT
-========================================= */
-
-input[type="url"] {
-    width: 100%;
-
-    height: 52px;
-
-    display: block;
-
-    padding: 0 15px;
-
-    border: 1px solid #444444;
-
-    border-radius: 11px;
-
-    outline: none;
-
-    background: #101010;
-
-    color: #ffffff;
-
-    font-size: 14px;
-
-    transition:
-        border-color 0.2s,
-        box-shadow 0.2s;
-}
-
-input[type="url"]::placeholder {
-    color: #666666;
-}
-
-input[type="url"]:focus {
-    border-color: #e1306c;
-
-    box-shadow:
-        0 0 0 3px rgba(225, 48, 108, 0.10);
-}
-
-
-/* =========================================
-   MAIN BUTTON
-========================================= */
-
-#btn {
-    width: 100%;
-
-    height: 52px;
-
-    display: block;
-
-    margin: 14px 0 0;
-
-    padding: 0 15px;
-
-    border: none;
-
-    border-radius: 11px;
-
-    background: #e1306c;
-
-    color: #ffffff;
-
-    font-size: 15px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition:
-        opacity 0.2s,
-        transform 0.15s;
-}
-
-#btn:hover {
-    opacity: 0.92;
-}
-
-#btn:active {
-    transform: scale(0.98);
-}
-
-#btn:disabled {
-    opacity: 0.55;
-
-    cursor: wait;
-}
-
-
-/* =========================================
-   FLASH MESSAGE
-========================================= */
-
-.message {
-    width: 100%;
-
-    margin: 0 0 15px;
-
-    padding: 12px 14px;
-
-    border-radius: 10px;
-
-    background: #2a2024;
-
-    border: 1px solid #4b2935;
-
-    color: #ffb4c7;
-
-    font-size: 13px;
-
-    line-height: 1.4;
-}
-
-
-/* =========================================
-   SMALL NOTICE
-========================================= */
-
-.card small {
-    display: block;
-
-    margin-top: 18px;
-
-    color: #777777;
-
-    font-size: 11px;
-
-    line-height: 1.5;
-}
-
-
-/* =========================================
-   RESULT PAGE
-========================================= */
-
-.video-page {
-    width: 100%;
-
-    max-width: 700px;
+    max-width: 1050px;
 
     min-height: 100vh;
 
     margin: 0 auto;
 
-    background: #111111;
+    padding:
+        28px
+        24px
+        30px;
+
+    display: flex;
+
+    flex-direction: column;
 }
 
 
-/* =========================================
-   RESULT TOP BAR
-========================================= */
+/* =====================================================
+   HEADER
+===================================================== */
 
-.top-bar {
+.header {
     width: 100%;
-
-    height: 58px;
-
-    position: relative;
 
     display: flex;
 
     align-items: center;
 
-    padding: 0 18px;
+    justify-content: space-between;
 
-    border-bottom: 1px solid #292929;
+    gap: 20px;
 
-    background: #111111;
+    margin-bottom: 70px;
 }
 
-.page-title {
-    position: absolute;
 
-    left: 50%;
+/* =====================================================
+   BRAND
+===================================================== */
 
-    transform: translateX(-50%);
+.brand {
+    display: flex;
 
-    color: #ffffff;
+    align-items: center;
 
-    font-size: 16px;
-
-    font-weight: 600;
-
-    white-space: nowrap;
+    gap: 12px;
 }
 
-.back-btn {
+
+.brand-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff2d55,
+            #8b5cf6
+        );
+
+    color: white;
+
+    font-size: 19px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(139, 92, 246, 0.25);
+}
+
+
+.brand-text {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+
+.brand-text strong {
+    font-size: 17px;
+
+    font-weight: 750;
+
+    letter-spacing: -0.3px;
+}
+
+
+.brand-text span {
+    font-size: 11px;
+
+    color: #85858f;
+}
+
+
+/* =====================================================
+   LANGUAGE
+===================================================== */
+
+.language-box {
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 5px;
+
+    border: 1px solid #25252c;
+
+    background: rgba(
+        20,
+        20,
+        25,
+        0.75
+    );
+
+    border-radius: 12px;
+
+    backdrop-filter: blur(15px);
+}
+
+
+.language-btn {
+    min-width: 39px;
+    height: 32px;
+
+    padding: 0 8px;
+
+    border: 0;
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: #85858f;
+
+    font-size: 11px;
+
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition:
+        0.2s ease;
+}
+
+
+.language-btn:hover {
     color: #ffffff;
 
-    text-decoration: none;
+    background: #24242b;
+}
+
+
+.language-btn.active {
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b5cf6,
+            #ec4899
+        );
+
+    box-shadow:
+        0 4px 14px
+        rgba(139, 92, 246, 0.22);
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+    width: 100%;
+
+    max-width: 760px;
+
+    margin: 0 auto;
+
+    text-align: center;
+}
+
+
+/* =====================================================
+   BADGE
+===================================================== */
+
+.hero-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding:
+        7px
+        12px;
+
+    margin-bottom: 22px;
+
+    border:
+        1px solid
+        rgba(139, 92, 246, 0.22);
+
+    border-radius: 30px;
+
+    background:
+        rgba(
+            139,
+            92,
+            246,
+            0.08
+        );
+
+    color: #b8a4ff;
+
+    font-size: 11px;
+
+    font-weight: 650;
+}
+
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #4ade80;
+
+    box-shadow:
+        0 0 10px
+        rgba(74, 222, 128, 0.8);
+}
+
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.hero h1 {
+    font-size: clamp(
+        42px,
+        7vw,
+        72px
+    );
+
+    line-height: 1.02;
+
+    letter-spacing: -3px;
+
+    font-weight: 850;
+
+    margin-bottom: 22px;
+}
+
+
+.hero h1 span {
+    background:
+        linear-gradient(
+            90deg,
+            #a78bfa,
+            #f472b6
+        );
+
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    color: transparent;
+}
+
+
+/* =====================================================
+   DESCRIPTION
+===================================================== */
+
+.hero-description {
+    max-width: 570px;
+
+    margin:
+        0 auto
+        38px;
+
+    color: #91919c;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   DOWNLOAD CARD
+===================================================== */
+
+.download-card {
+    width: 100%;
+
+    padding: 24px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(25, 25, 31, 0.96),
+            rgba(15, 15, 20, 0.96)
+        );
+
+    box-shadow:
+        0 25px 80px
+        rgba(0, 0, 0, 0.45);
+
+    text-align: left;
+
+    backdrop-filter: blur(20px);
+}
+
+
+/* =====================================================
+   FIELD LABEL
+===================================================== */
+
+.field-label {
+    margin-bottom: 10px;
+
+    color: #d6d6dd;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   INPUT
+===================================================== */
+
+.input-wrapper {
+    width: 100%;
+
+    min-height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding:
+        6px
+        7px
+        6px
+        15px;
+
+    border:
+        1px solid
+        #303038;
+
+    border-radius: 13px;
+
+    background: #101015;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.input-wrapper:focus-within {
+    border-color: #8b5cf6;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(
+            139,
+            92,
+            246,
+            0.10
+        );
+}
+
+
+.input-icon {
+    flex-shrink: 0;
+
+    font-size: 17px;
+
+    opacity: 0.7;
+}
+
+
+.input-wrapper input {
+    min-width: 0;
+
+    flex: 1;
+
+    height: 44px;
+
+    border: 0;
+
+    outline: 0;
+
+    background: transparent;
+
+    color: #ffffff;
 
     font-size: 14px;
 }
 
-.back-btn:hover {
-    color: #e1306c;
+
+.input-wrapper input::placeholder {
+    color: #5e5e68;
 }
 
 
-/* =========================================
-   VIDEO AREA
-========================================= */
+/* =====================================================
+   PASTE
+===================================================== */
 
-.video-container {
-    width: 100%;
+.paste-button {
+    flex-shrink: 0;
 
-    min-height: 300px;
+    height: 43px;
+
+    padding:
+        0
+        13px;
 
     display: flex;
 
@@ -391,52 +539,682 @@ input[type="url"]:focus {
 
     justify-content: center;
 
-    padding: 12px;
+    gap: 6px;
 
-    background: #000000;
+    border:
+        1px solid
+        #33333c;
+
+    border-radius: 9px;
+
+    background: #1b1b22;
+
+    color: #ddddE5;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        0.2s ease;
 }
 
 
-/* =========================================
-   VIDEO PLAYER
-========================================= */
+.paste-button:hover {
+    background: #282831;
 
-.video-player {
+    border-color: #555563;
+}
+
+
+.paste-icon {
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.error-message {
+    margin-top: 10px;
+
+    padding:
+        10px
+        12px;
+
+    border-radius: 9px;
+
+    background:
+        rgba(
+            239,
+            68,
+            68,
+            0.10
+        );
+
+    border:
+        1px solid
+        rgba(
+            239,
+            68,
+            68,
+            0.20
+        );
+
+    color: #fca5a5;
+
+    font-size: 12px;
+
+    line-height: 1.4;
+}
+
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =====================================================
+   OPTIONS
+===================================================== */
+
+.options-row {
+    margin-top: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+
+.quality-info {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+}
+
+
+.quality-icon {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background:
+        rgba(
+            139,
+            92,
+            246,
+            0.12
+        );
+
+    color: #b9a4ff;
+
+    font-size: 10px;
+
+    font-weight: 900;
+}
+
+
+.quality-info strong {
     display: block;
 
-    width: auto;
+    margin-bottom: 3px;
 
-    max-width: 100%;
+    color: #e5e5eb;
 
-    height: auto;
+    font-size: 12px;
+}
 
-    max-height: 68vh;
 
-    background: #000000;
+.quality-info small {
+    display: block;
+
+    max-width: 390px;
+
+    color: #6e6e78;
+
+    font-size: 10px;
+
+    line-height: 1.4;
+}
+
+
+.quality-select {
+    min-width: 125px;
+
+    height: 40px;
+
+    padding:
+        0
+        12px;
+
+    border:
+        1px solid
+        #303038;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    background: #15151b;
+
+    color: #e7e7ec;
+
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   DOWNLOAD BUTTON
+===================================================== */
+
+.download-button {
+    width: 100%;
+
+    height: 56px;
+
+    margin-top: 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    border: 0;
 
     border-radius: 12px;
 
-    object-fit: contain;
+    background:
+        linear-gradient(
+            135deg,
+            #8b5cf6,
+            #ec4899
+        );
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.3px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 12px 30px
+        rgba(
+            139,
+            92,
+            246,
+            0.22
+        );
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
 }
 
 
-/* =========================================
-   VIDEO INFORMATION
-========================================= */
+.download-button:hover {
+    transform: translateY(-2px);
 
-.video-info {
+    box-shadow:
+        0 17px 38px
+        rgba(
+            139,
+            92,
+            246,
+            0.32
+        );
+}
+
+
+.download-button:active {
+    transform: translateY(0);
+}
+
+
+.download-button:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.65;
+
+    transform: none;
+}
+
+
+.download-icon {
+    font-size: 19px;
+
+    line-height: 1;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading-area {
+    margin-top: 15px;
+
+    padding:
+        13px
+        15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 11px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(
+            139,
+            92,
+            246,
+            0.06
+        );
+
+    border:
+        1px solid
+        rgba(
+            139,
+            92,
+            246,
+            0.10
+        );
+}
+
+
+.loading-spinner {
+    width: 20px;
+    height: 20px;
+
+    flex-shrink: 0;
+
+    border:
+        2px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.15
+        );
+
+    border-top-color: #a78bfa;
+
+    border-radius: 50%;
+
+    animation:
+        spin 0.8s linear infinite;
+}
+
+
+@keyframes spin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+.loading-area strong {
+    display: block;
+
+    color: #dedee5;
+
+    font-size: 12px;
+}
+
+
+.loading-area small {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #777781;
+
+    font-size: 10px;
+}
+
+
+/* =====================================================
+   FEATURES
+===================================================== */
+
+.features {
     width: 100%;
 
-    padding: 24px 20px 35px;
+    margin-top: 25px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            1fr
+        );
+
+    gap: 10px;
+}
+
+
+.feature {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding:
+        13px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.055
+        );
+
+    border-radius: 12px;
+
+    background:
+        rgba(
+            20,
+            20,
+            25,
+            0.65
+        );
+}
+
+
+.feature-icon {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: #1c1c23;
+
+    font-size: 15px;
+}
+
+
+.feature strong {
+    display: block;
+
+    margin-bottom: 2px;
+
+    color: #d8d8df;
+
+    font-size: 11px;
+}
+
+
+.feature span {
+    display: block;
+
+    color: #686872;
+
+    font-size: 9px;
+}
+
+
+/* =====================================================
+   NOTICE
+===================================================== */
+
+.notice {
+    margin-top: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    color: #666670;
+
+    font-size: 10px;
+
+    line-height: 1.5;
 
     text-align: center;
 }
 
-.success-icon {
-    width: 42px;
-    height: 42px;
 
-    margin: 0 auto 12px;
+.notice-icon {
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+    margin-top: auto;
+
+    padding-top: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    color: #4f4f58;
+
+    font-size: 10px;
+
+    text-align: center;
+}
+
+
+.footer-dot {
+    color: #777780;
+}
+
+
+/* =====================================================
+   RESULT PAGE
+===================================================== */
+
+.video-page {
+    width: 100%;
+
+    max-width: 900px;
+
+    min-height: 100vh;
+
+    margin: 0 auto;
+
+    padding:
+        20px
+        20px
+        40px;
+
+    color: #ffffff;
+}
+
+
+.top-bar {
+    width: 100%;
+
+    min-height: 52px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+
+.back-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 40px;
+
+    padding:
+        0
+        13px;
+
+    border:
+        1px solid
+        #292930;
+
+    border-radius: 9px;
+
+    background: #141419;
+
+    color: #dddde5;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+
+.back-btn:hover {
+    background: #202027;
+}
+
+
+.page-title {
+    flex: 1;
+
+    color: #ededf2;
+
+    font-size: 14px;
+
+    font-weight: 750;
+}
+
+
+/* =====================================================
+   VIDEO CONTAINER
+===================================================== */
+
+.video-container {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    background: #000;
+
+    border:
+        1px solid
+        #26262d;
+
+    box-shadow:
+        0 20px 60px
+        rgba(
+            0,
+            0,
+            0,
+            0.45
+        );
+}
+
+
+.video-player {
+    display: block;
+
+    width: 100%;
+
+    max-width: 520px;
+
+    max-height: 70vh;
+
+    aspect-ratio: 9 / 16;
+
+    object-fit: contain;
+
+    background: #000;
+}
+
+
+/* =====================================================
+   VIDEO INFO
+===================================================== */
+
+.video-info {
+    width: 100%;
+
+    max-width: 520px;
+
+    margin:
+        22px auto
+        0;
+
+    text-align: center;
+}
+
+
+.success-icon {
+    width: 48px;
+    height: 48px;
+
+    margin:
+        0 auto
+        12px;
 
     display: flex;
 
@@ -445,356 +1223,519 @@ input[type="url"]:focus {
 
     border-radius: 50%;
 
-    background: #24a148;
+    background:
+        rgba(
+            74,
+            222,
+            128,
+            0.10
+        );
 
-    color: #ffffff;
+    border:
+        1px solid
+        rgba(
+            74,
+            222,
+            128,
+            0.20
+        );
 
-    font-size: 21px;
-}
-
-.video-info h1 {
-    margin: 0;
-
-    color: #ffffff;
+    color: #4ade80;
 
     font-size: 23px;
 
-    line-height: 1.3;
-}
-
-.video-info p {
-    margin: 9px 0 20px;
-
-    color: #999999;
-
-    font-size: 14px;
-
-    line-height: 1.5;
+    font-weight: 800;
 }
 
 
-/* =========================================
-   DOWNLOAD BUTTON
-========================================= */
+.video-info h1 {
+    margin-bottom: 7px;
 
-.download-button {
-    width: 100%;
+    font-size: 24px;
 
-    min-height: 50px;
+    letter-spacing: -0.7px;
+}
+
+
+.video-info > p {
+    margin-bottom: 18px;
+
+    color: #777781;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   VIDEO DETAILS
+===================================================== */
+
+.video-details {
+    display: flex;
+
+    gap: 10px;
+
+    margin-bottom: 15px;
+}
+
+
+.detail-box {
+    flex: 1;
+
+    min-width: 0;
 
     display: flex;
 
     align-items: center;
-    justify-content: center;
 
-    padding: 14px 18px;
+    gap: 9px;
 
-    margin: 0 0 12px;
+    padding: 12px;
+
+    border:
+        1px solid
+        #292930;
+
+    border-radius: 11px;
+
+    background: #141419;
+
+    text-align: left;
+}
+
+
+.detail-icon {
+    font-size: 18px;
+}
+
+
+.detail-box small {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #70707a;
+
+    font-size: 9px;
+}
+
+
+.detail-box strong {
+    display: block;
+
+    color: #e5e5ea;
+
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   RESULT DOWNLOAD
+===================================================== */
+
+.video-info .download-button {
+    text-decoration: none;
+
+    margin-top: 0;
+}
+
+
+/* =====================================================
+   SHARE BUTTON
+===================================================== */
+
+.share-button {
+    width: 100%;
+
+    min-height: 48px;
+
+    margin-top: 10px;
+
+    border:
+        1px solid
+        #303038;
 
     border-radius: 10px;
 
-    background: #e1306c;
+    background: #19191f;
 
-    color: #ffffff;
+    color: #e5e5ea;
 
-    text-decoration: none;
+    font-size: 12px;
 
-    font-size: 15px;
+    font-weight: 750;
 
-    font-weight: bold;
+    cursor: pointer;
 
-    transition:
-        opacity 0.2s,
-        transform 0.15s;
-}
-
-.download-button:hover {
-    opacity: 0.92;
-}
-
-.download-button:active {
-    transform: scale(0.98);
+    transition: 0.2s ease;
 }
 
 
-/* =========================================
-   NEW VIDEO BUTTON
-========================================= */
+.share-button:hover {
+    background: #25252d;
+}
+
 
 .new-video {
     display: block;
 
-    padding: 8px;
+    margin-top: 14px;
 
-    color: #999999;
+    color: #a78bfa;
+
+    font-size: 11px;
+
+    font-weight: 700;
 
     text-decoration: none;
-
-    font-size: 14px;
 }
+
 
 .new-video:hover {
-    color: #ffffff;
+    color: #c4b5fd;
 }
 
 
-/* =========================================
+/* =====================================================
    MOBILE
-========================================= */
+===================================================== */
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
 
-    body {
-        background: #111111;
-    }
 
-    /* INDEX */
-
-    .card {
-        width: calc(100% - 24px);
-
-        margin: 20px auto;
-
-        padding: 22px 16px;
-
-        border-radius: 18px;
-    }
-
-    .language-box {
-        margin-bottom: 16px;
-
-        gap: 5px;
-    }
-
-    .language-btn {
-        min-width: 36px;
-
-        height: 30px;
-
-        padding: 0 8px;
-
-        font-size: 10px;
-    }
-
-    .icon {
-        width: 56px;
-        height: 56px;
-
-        margin-bottom: 15px;
-
-        font-size: 24px;
-    }
-
-    .card h1 {
-        font-size: 24px;
-
-        line-height: 1.25;
-    }
-
-    .card p {
-        margin-bottom: 22px;
-
-        font-size: 14px;
-    }
-
-    input[type="url"] {
-        height: 50px;
-
-        font-size: 13px;
-    }
-
-    #btn {
-        height: 50px;
-
-        font-size: 14px;
-    }
-
-    .card small {
-        font-size: 10px;
+    .app {
+        padding:
+            18px
+            14px
+            25px;
     }
 
 
-    /* RESULT */
-
-    .video-page {
-        width: 100%;
-
-        max-width: 100%;
-
-        min-height: 100vh;
+    .header {
+        margin-bottom: 50px;
     }
 
-    .top-bar {
-        height: 54px;
 
-        padding: 0 15px;
-    }
-
-    .page-title {
-        font-size: 15px;
-    }
-
-    .back-btn {
-        font-size: 13px;
-    }
-
-    .video-container {
-        min-height: 0;
-
-        padding: 8px;
-    }
-
-    .video-player {
-        width: auto;
-
-        max-width: 100%;
-
-        max-height: 62vh;
-
-        border-radius: 9px;
-    }
-
-    .video-info {
-        padding: 20px 16px 28px;
-    }
-
-    .success-icon {
+    .brand-icon {
         width: 40px;
         height: 40px;
 
-        font-size: 20px;
+        border-radius: 11px;
     }
+
+
+    .brand-text strong {
+        font-size: 15px;
+    }
+
+
+    .brand-text span {
+        font-size: 9px;
+    }
+
+
+    .language-box {
+        gap: 2px;
+
+        padding: 4px;
+    }
+
+
+    .language-btn {
+        min-width: 34px;
+
+        height: 29px;
+
+        padding: 0 6px;
+
+        font-size: 9px;
+    }
+
+
+    .hero-badge {
+        margin-bottom: 18px;
+    }
+
+
+    .hero h1 {
+        font-size: 43px;
+
+        letter-spacing: -2.2px;
+
+        margin-bottom: 18px;
+    }
+
+
+    .hero-description {
+        font-size: 13px;
+
+        margin-bottom: 28px;
+    }
+
+
+    .download-card {
+        padding: 16px;
+
+        border-radius: 16px;
+    }
+
+
+    .input-wrapper {
+        min-height: 54px;
+
+        padding-left: 12px;
+    }
+
+
+    .input-wrapper input {
+        font-size: 13px;
+    }
+
+
+    .paste-button {
+        height: 40px;
+
+        padding:
+            0
+            10px;
+    }
+
+
+    .paste-button .paste-icon {
+        display: none;
+    }
+
+
+    .options-row {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+
+    .quality-info {
+        width: 100%;
+    }
+
+
+    .quality-select {
+        width: 100%;
+    }
+
+
+    .features {
+        grid-template-columns: 1fr;
+
+        gap: 8px;
+    }
+
+
+    .feature {
+        padding: 11px;
+    }
+
+
+    footer {
+        padding-top: 45px;
+    }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 400px) {
+
+
+    .app {
+        padding:
+            15px
+            11px
+            22px;
+    }
+
+
+    .header {
+        margin-bottom: 38px;
+    }
+
+
+    .brand-text span {
+        display: none;
+    }
+
+
+    .language-btn {
+        min-width: 31px;
+
+        padding: 0 5px;
+
+        font-size: 8px;
+    }
+
+
+    .hero h1 {
+        font-size: 37px;
+
+        letter-spacing: -1.8px;
+    }
+
+
+    .hero-description {
+        font-size: 12px;
+    }
+
+
+    .download-card {
+        padding: 13px;
+    }
+
+
+    .input-wrapper {
+        padding-left: 10px;
+    }
+
+
+    .input-wrapper input {
+        font-size: 12px;
+    }
+
+
+    .paste-button {
+        padding:
+            0
+            8px;
+
+        font-size: 10px;
+    }
+
+
+    .download-button {
+        height: 52px;
+
+        font-size: 11px;
+    }
+
+
+    .video-page {
+        padding:
+            12px
+            10px
+            25px;
+    }
+
+
+    .top-bar {
+        margin-bottom: 12px;
+    }
+
+
+    .video-player {
+        max-height: 68vh;
+    }
+
 
     .video-info h1 {
         font-size: 21px;
     }
 
-    .video-info p {
-        font-size: 13px;
-
-        margin-bottom: 18px;
-    }
-
-    .download-button {
-        min-height: 49px;
-
-        font-size: 14px;
-    }
-
-    .new-video {
-        font-size: 13px;
-    }
-}
-
-
-/* =========================================
-   VERY SMALL PHONES
-========================================= */
-
-@media (max-width: 380px) {
-
-    .card {
-        width: calc(100% - 18px);
-
-        margin: 12px auto;
-
-        padding: 20px 13px;
-    }
-
-    .card h1 {
-        font-size: 21px;
-    }
-
-    .card p {
-        font-size: 13px;
-    }
-
-    .language-btn {
-        min-width: 34px;
-
-        height: 28px;
-
-        padding: 0 7px;
-    }
-
-    .video-player {
-        max-height: 58vh;
-    }
-
-    .video-info {
-        padding-top: 17px;
-    }
-}
-
-
-.video-details {
-    display: flex;
-    gap: 10px;
-    margin: 15px 0;
-}
-
-.detail-box {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px;
-    background: #1c1c1c;
-    border: 1px solid #303030;
-    border-radius: 10px;
-    text-align: left;
-}
-
-.detail-icon {
-    font-size: 20px;
-}
-
-.detail-box small {
-    display: block;
-    color: #888;
-    font-size: 11px;
-    margin-bottom: 3px;
-}
-
-.detail-box strong {
-    display: block;
-    color: #fff;
-    font-size: 14px;
-}
-
-.share-button {
-    width: 100%;
-    min-height: 48px;
-    border: 1px solid #444;
-    border-radius: 10px;
-    background: #222;
-    color: #fff;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-bottom: 10px;
-}
-
-.share-button:hover {
-    background: #2d2d2d;
-}
-
-@media (max-width: 500px) {
 
     .video-details {
         gap: 7px;
     }
 
+
     .detail-box {
-        padding: 10px;
+        padding: 9px;
+
+        gap: 7px;
     }
+
 
     .detail-icon {
-        font-size: 17px;
+        font-size: 16px;
     }
 
-    .detail-box strong {
-        font-size: 13px;
+
+}
+
+
+/* =====================================================
+   TOUCH DEVICES
+===================================================== */
+
+@media (hover: none) {
+
+
+    .download-button:hover {
+        transform: none;
+    }
+
+
+    .language-btn:hover {
+        background: transparent;
+    }
+
+
+    .paste-button:hover {
+        background: #1b1b22;
+    }
+
+
+    .share-button:hover {
+        background: #19191f;
+    }
+
+}
+
+
+/* =====================================================
+   ACCESSIBILITY
+===================================================== */
+
+button,
+select,
+input {
+    -webkit-tap-highlight-color:
+        transparent;
+}
+
+
+button:focus-visible,
+select:focus-visible,
+input:focus-visible,
+a:focus-visible {
+    outline:
+        2px solid
+        #a78bfa;
+
+    outline-offset: 2px;
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    * {
+        scroll-behavior: auto !important;
+
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
     }
 
 }
