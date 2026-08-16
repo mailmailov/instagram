@@ -2,217 +2,1214 @@
 <html lang="az">
 
 <head>
+
     <meta charset="utf-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    >
 
-    <title id="pageTitle">Instagram Video Yüklə</title>
+    <meta
+        name="theme-color"
+        content="#0b0b0f"
+    >
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
+    <title id="pageTitle">
+        Instagram Video Yüklə
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
 </head>
+
 
 <body>
 
-<div class="card">
 
-    <!-- DİL SEÇİMİ -->
+<!-- =====================================================
+     BACKGROUND
+====================================================== -->
 
-    <div class="language-box">
+<div class="background-glow glow-one"></div>
+<div class="background-glow glow-two"></div>
 
-        <button type="button"
+
+<!-- =====================================================
+     MAIN
+====================================================== -->
+
+<main class="app">
+
+
+    <!-- =================================================
+         HEADER
+    ================================================== -->
+
+    <header class="header">
+
+
+        <div class="brand">
+
+
+            <div class="brand-icon">
+                ▶
+            </div>
+
+
+            <div class="brand-text">
+
+                <strong>
+                    InstaDownloader
+                </strong>
+
+                <span>
+                    Video Downloader
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- DİL -->
+
+        <div class="language-box">
+
+
+            <button
+                type="button"
+                class="language-btn active"
+                data-lang="az"
+                onclick="changeLanguage('az')"
+            >
+                AZ
+            </button>
+
+
+            <button
+                type="button"
                 class="language-btn"
-                onclick="changeLanguage('az')">
-            AZ
-        </button>
+                data-lang="en"
+                onclick="changeLanguage('en')"
+            >
+                EN
+            </button>
 
-        <button type="button"
+
+            <button
+                type="button"
                 class="language-btn"
-                onclick="changeLanguage('en')">
-            EN
-        </button>
+                data-lang="ru"
+                onclick="changeLanguage('ru')"
+            >
+                RU
+            </button>
 
-        <button type="button"
+
+            <button
+                type="button"
                 class="language-btn"
-                onclick="changeLanguage('ru')">
-            RU
-        </button>
-
-        <button type="button"
-                class="language-btn"
-                onclick="changeLanguage('tr')">
-            TR
-        </button>
-
-    </div>
+                data-lang="tr"
+                onclick="changeLanguage('tr')"
+            >
+                TR
+            </button>
 
 
-    <div class="icon">
-        ▶
-    </div>
+        </div>
 
 
-    <h1 id="title">
-        Instagram Video Yüklə
-    </h1>
+    </header>
 
 
-    <p id="description">
-        Instagram video linkini aşağıya yapışdır.
-    </p>
+
+    <!-- =================================================
+         HERO
+    ================================================== -->
+
+    <section class="hero">
 
 
-    {% with messages = get_flashed_messages() %}
+        <!-- BADGE -->
 
-        {% if messages %}
+        <div class="hero-badge">
 
-            {% for message in messages %}
+            <span class="status-dot"></span>
 
-                <div class="message">
-                    {{ message }}
+            <span id="badgeText">
+                Sürətli və rahat yükləmə
+            </span>
+
+        </div>
+
+
+
+        <!-- TITLE -->
+
+        <h1 id="title">
+
+            Instagram
+            <span>Video Yüklə</span>
+
+        </h1>
+
+
+
+        <!-- DESCRIPTION -->
+
+        <p
+            class="hero-description"
+            id="description"
+        >
+
+            Instagram video linkini aşağıya
+            yapışdır və videonu cihazına endir.
+
+        </p>
+
+
+
+        <!-- =================================================
+             DOWNLOAD CARD
+        ================================================== -->
+
+        <div class="download-card">
+
+
+            <!-- INPUT HEADER -->
+
+            <div class="field-label">
+
+                <span id="linkLabel">
+                    Instagram video linki
+                </span>
+
+            </div>
+
+
+
+            <!-- INPUT -->
+
+            <div class="input-wrapper">
+
+
+                <div class="input-icon">
+                    🔗
                 </div>
 
-            {% endfor %}
 
-        {% endif %}
-
-    {% endwith %}
-
-
-    <form
-        action="{{ url_for('download_video') }}"
-        method="post"
-        id="form"
-    >
-
-        <input
-            type="url"
-            name="url"
-            id="urlInput"
-            placeholder="https://www.instagram.com/reel/..."
-            required
-            autocomplete="off"
-        >
+                <input
+                    type="url"
+                    name="url"
+                    id="urlInput"
+                    placeholder="https://www.instagram.com/reel/..."
+                    autocomplete="off"
+                    required
+                >
 
 
-        <button
-            type="submit"
-            id="btn"
-        >
-            VİDEONU YÜKLƏ
-        </button>
+                <button
+                    type="button"
+                    class="paste-button"
+                    id="pasteButton"
+                >
 
-    </form>
+                    <span class="paste-icon">
+                        📋
+                    </span>
+
+                    <span id="pasteText">
+                        Yapışdır
+                    </span>
+
+                </button>
 
 
-    <small id="notice">
-        Yalnız açıq/public və istifadə etməyə icazən olan məzmunu endir.
-    </small>
+            </div>
 
-</div>
 
+
+            <!-- ERROR -->
+
+            <div
+                class="error-message hidden"
+                id="errorMessage"
+            ></div>
+
+
+
+            <!-- =================================================
+                 QUALITY
+            ================================================== -->
+
+            <div class="options-row">
+
+
+                <div class="quality-info">
+
+
+                    <span class="quality-icon">
+                        HD
+                    </span>
+
+
+                    <div>
+
+                        <strong id="qualityTitle">
+                            Video keyfiyyəti
+                        </strong>
+
+                        <small id="qualityDescription">
+                            Daha yüksək keyfiyyət daha böyük fayl yarada bilər.
+                        </small>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <select
+                    id="quality"
+                    class="quality-select"
+                >
+
+                    <option value="best">
+                        Ən yaxşı
+                    </option>
+
+                    <option value="1080">
+                        1080p
+                    </option>
+
+                    <option value="720">
+                        720p
+                    </option>
+
+                    <option value="480">
+                        480p
+                    </option>
+
+                    <option value="360">
+                        360p
+                    </option>
+
+                </select>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 DOWNLOAD BUTTON
+            ================================================== -->
+
+            <form
+                action="{{ url_for('download_video') }}"
+                method="post"
+                id="form"
+            >
+
+                <input
+                    type="hidden"
+                    name="url"
+                    id="hiddenUrl"
+                >
+
+
+                <button
+                    type="submit"
+                    class="download-button"
+                    id="downloadButton"
+                >
+
+                    <span class="download-icon">
+                        ↓
+                    </span>
+
+
+                    <span id="buttonText">
+                        VİDEONU YÜKLƏ
+                    </span>
+
+
+                </button>
+
+            </form>
+
+
+
+            <!-- LOADING -->
+
+            <div
+                class="loading-area hidden"
+                id="loadingArea"
+            >
+
+                <div class="loading-spinner"></div>
+
+                <div>
+
+                    <strong id="loadingTitle">
+                        Video yüklənir...
+                    </strong>
+
+                    <small id="loadingText">
+                        Zəhmət olmasa gözlə.
+                    </small>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             FEATURES
+        ================================================== -->
+
+        <div class="features">
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    ⚡
+                </div>
+
+                <div>
+
+                    <strong id="featureOneTitle">
+                        Sürətli
+                    </strong>
+
+                    <span id="featureOneText">
+                        Sadə və rahat
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    📱
+                </div>
+
+                <div>
+
+                    <strong id="featureTwoTitle">
+                        Mobil uyğun
+                    </strong>
+
+                    <span id="featureTwoText">
+                        Telefon və planşet üçün
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🎬
+                </div>
+
+                <div>
+
+                    <strong id="featureThreeTitle">
+                        Video izləmə
+                    </strong>
+
+                    <span id="featureThreeText">
+                        Yüklədikdən sonra bax
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             NOTICE
+        ================================================== -->
+
+        <div class="notice">
+
+            <span class="notice-icon">
+                🔒
+            </span>
+
+
+            <span id="notice">
+
+                Yalnız açıq/public və istifadə etməyə
+                icazən olan məzmunu endir.
+
+            </span>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         FOOTER
+    ================================================== -->
+
+    <footer>
+
+        <span>
+            © 2026 InstaDownloader
+        </span>
+
+        <span class="footer-dot">
+            •
+        </span>
+
+        <span id="footerText">
+            Sadə. Sürətli. Rahat.
+        </span>
+
+    </footer>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
 
 <script>
 
+
+/* =====================================================
+   TRANSLATIONS
+====================================================== */
+
+
 const translations = {
 
+
     az: {
-        title: "Instagram Video Yüklə",
-        description: "Instagram video linkini aşağıya yapışdır.",
-        button: "VİDEONU YÜKLƏ",
-        loading: "YÜKLƏNİR...",
-        placeholder: "https://www.instagram.com/reel/...",
-        notice: "Yalnız açıq/public və istifadə etməyə icazən olan məzmunu endir."
+
+        title:
+            "Instagram Video Yüklə",
+
+        description:
+            "Instagram video linkini aşağıya yapışdır və videonu cihazına endir.",
+
+        badge:
+            "Sürətli və rahat yükləmə",
+
+        link:
+            "Instagram video linki",
+
+        paste:
+            "Yapışdır",
+
+        pasted:
+            "Yapışdırıldı",
+
+        quality:
+            "Video keyfiyyəti",
+
+        qualityDesc:
+            "Daha yüksək keyfiyyət daha böyük fayl yarada bilər.",
+
+        best:
+            "Ən yaxşı",
+
+        button:
+            "VİDEONU YÜKLƏ",
+
+        loading:
+            "Video yüklənir...",
+
+        wait:
+            "Zəhmət olmasa gözlə.",
+
+        invalid:
+            "Zəhmət olmasa Instagram video linki daxil et.",
+
+        featureOne:
+            "Sürətli",
+
+        featureOneText:
+            "Sadə və rahat",
+
+        featureTwo:
+            "Mobil uyğun",
+
+        featureTwoText:
+            "Telefon və planşet üçün",
+
+        featureThree:
+            "Video izləmə",
+
+        featureThreeText:
+            "Yüklədikdən sonra bax",
+
+        notice:
+            "Yalnız açıq/public və istifadə etməyə icazən olan məzmunu endir.",
+
+        footer:
+            "Sadə. Sürətli. Rahat."
+
     },
+
 
     en: {
-        title: "Instagram Video Downloader",
-        description: "Paste the Instagram video link below.",
-        button: "DOWNLOAD VIDEO",
-        loading: "DOWNLOADING...",
-        placeholder: "https://www.instagram.com/reel/...",
-        notice: "Download only public content that you own or have permission to use."
+
+        title:
+            "Instagram Video Downloader",
+
+        description:
+            "Paste an Instagram video link below and download the video to your device.",
+
+        badge:
+            "Fast and easy downloading",
+
+        link:
+            "Instagram video link",
+
+        paste:
+            "Paste",
+
+        pasted:
+            "Pasted",
+
+        quality:
+            "Video quality",
+
+        qualityDesc:
+            "Higher quality may create a larger file.",
+
+        best:
+            "Best",
+
+        button:
+            "DOWNLOAD VIDEO",
+
+        loading:
+            "Downloading video...",
+
+        wait:
+            "Please wait.",
+
+        invalid:
+            "Please enter a valid Instagram video link.",
+
+        featureOne:
+            "Fast",
+
+        featureOneText:
+            "Simple and easy",
+
+        featureTwo:
+            "Mobile friendly",
+
+        featureTwoText:
+            "For phones and tablets",
+
+        featureThree:
+            "Video preview",
+
+        featureThreeText:
+            "Watch after downloading",
+
+        notice:
+            "Download only public content you own or have permission to use.",
+
+        footer:
+            "Simple. Fast. Easy."
+
     },
+
 
     ru: {
-        title: "Загрузка видео Instagram",
-        description: "Вставьте ссылку на видео Instagram ниже.",
-        button: "СКАЧАТЬ ВИДЕО",
-        loading: "ЗАГРУЗКА...",
-        placeholder: "https://www.instagram.com/reel/...",
-        notice: "Скачивайте только общедоступный контент, который вам разрешено использовать."
+
+        title:
+            "Загрузчик видео Instagram",
+
+        description:
+            "Вставьте ссылку на видео Instagram ниже и скачайте видео на устройство.",
+
+        badge:
+            "Быстрая и удобная загрузка",
+
+        link:
+            "Ссылка на видео Instagram",
+
+        paste:
+            "Вставить",
+
+        pasted:
+            "Вставлено",
+
+        quality:
+            "Качество видео",
+
+        qualityDesc:
+            "Более высокое качество может увеличить размер файла.",
+
+        best:
+            "Лучшее",
+
+        button:
+            "СКАЧАТЬ ВИДЕО",
+
+        loading:
+            "Видео загружается...",
+
+        wait:
+            "Пожалуйста, подождите.",
+
+        invalid:
+            "Введите правильную ссылку на видео Instagram.",
+
+        featureOne:
+            "Быстро",
+
+        featureOneText:
+            "Просто и удобно",
+
+        featureTwo:
+            "Для мобильных",
+
+        featureTwoText:
+            "Для телефонов и планшетов",
+
+        featureThree:
+            "Просмотр видео",
+
+        featureThreeText:
+            "Смотрите после загрузки",
+
+        notice:
+            "Скачивайте только общедоступный контент, который вам разрешено использовать.",
+
+        footer:
+            "Просто. Быстро. Удобно."
+
     },
 
+
     tr: {
-        title: "Instagram Video İndir",
-        description: "Instagram video bağlantısını aşağıya yapıştır.",
-        button: "VİDEOYU İNDİR",
-        loading: "İNDİRİLİYOR...",
-        placeholder: "https://www.instagram.com/reel/...",
-        notice: "Yalnızca herkese açık ve kullanma izniniz olan içerikleri indirin."
+
+        title:
+            "Instagram Video İndir",
+
+        description:
+            "Instagram video bağlantısını aşağıya yapıştır ve videoyu cihazına indir.",
+
+        badge:
+            "Hızlı ve kolay indirme",
+
+        link:
+            "Instagram video bağlantısı",
+
+        paste:
+            "Yapıştır",
+
+        pasted:
+            "Yapıştırıldı",
+
+        quality:
+            "Video kalitesi",
+
+        qualityDesc:
+            "Daha yüksek kalite daha büyük bir dosya oluşturabilir.",
+
+        best:
+            "En iyi",
+
+        button:
+            "VİDEOYU İNDİR",
+
+        loading:
+            "Video indiriliyor...",
+
+        wait:
+            "Lütfen bekleyin.",
+
+        invalid:
+            "Lütfen geçerli bir Instagram video bağlantısı girin.",
+
+        featureOne:
+            "Hızlı",
+
+        featureOneText:
+            "Basit ve kolay",
+
+        featureTwo:
+            "Mobil uyumlu",
+
+        featureTwoText:
+            "Telefon ve tablet için",
+
+        featureThree:
+            "Video izleme",
+
+        featureThreeText:
+            "İndirdikten sonra izle",
+
+        notice:
+            "Yalnızca herkese açık ve kullanma izniniz olan içerikleri indirin.",
+
+        footer:
+            "Basit. Hızlı. Kolay."
+
     }
 
 };
 
 
+
+/* =====================================================
+   CHANGE LANGUAGE
+====================================================== */
+
+
 function changeLanguage(language) {
 
-    const text = translations[language];
 
-    document.documentElement.lang = language;
+    const text =
+        translations[language];
 
-    document.getElementById("pageTitle").textContent =
+
+    if (!text) {
+        return;
+    }
+
+
+    document.documentElement.lang =
+        language;
+
+
+    document.getElementById(
+        "pageTitle"
+    ).textContent =
         text.title;
 
-    document.getElementById("title").textContent =
-        text.title;
 
-    document.getElementById("description").textContent =
+    document.getElementById(
+        "title"
+    ).innerHTML =
+        text.title.replace(
+            "Instagram",
+            "Instagram<br>"
+        );
+
+
+    document.getElementById(
+        "description"
+    ).textContent =
         text.description;
 
-    document.getElementById("btn").textContent =
+
+    document.getElementById(
+        "badgeText"
+    ).textContent =
+        text.badge;
+
+
+    document.getElementById(
+        "linkLabel"
+    ).textContent =
+        text.link;
+
+
+    document.getElementById(
+        "pasteText"
+    ).textContent =
+        text.paste;
+
+
+    document.getElementById(
+        "qualityTitle"
+    ).textContent =
+        text.quality;
+
+
+    document.getElementById(
+        "qualityDescription"
+    ).textContent =
+        text.qualityDesc;
+
+
+    document.getElementById(
+        "quality"
+    ).options[0].textContent =
+        text.best;
+
+
+    document.getElementById(
+        "buttonText"
+    ).textContent =
         text.button;
 
-    document.getElementById("urlInput").placeholder =
-        text.placeholder;
 
-    document.getElementById("notice").textContent =
+    document.getElementById(
+        "loadingTitle"
+    ).textContent =
+        text.loading;
+
+
+    document.getElementById(
+        "loadingText"
+    ).textContent =
+        text.wait;
+
+
+    document.getElementById(
+        "featureOneTitle"
+    ).textContent =
+        text.featureOne;
+
+
+    document.getElementById(
+        "featureOneText"
+    ).textContent =
+        text.featureOneText;
+
+
+    document.getElementById(
+        "featureTwoTitle"
+    ).textContent =
+        text.featureTwo;
+
+
+    document.getElementById(
+        "featureTwoText"
+    ).textContent =
+        text.featureTwoText;
+
+
+    document.getElementById(
+        "featureThreeTitle"
+    ).textContent =
+        text.featureThree;
+
+
+    document.getElementById(
+        "featureThreeText"
+    ).textContent =
+        text.featureThreeText;
+
+
+    document.getElementById(
+        "notice"
+    ).textContent =
         text.notice;
+
+
+    document.getElementById(
+        "footerText"
+    ).textContent =
+        text.footer;
+
+
+    document.getElementById(
+        "urlInput"
+    ).placeholder =
+        "https://www.instagram.com/reel/...";
+
+
+    /* ACTIVE LANGUAGE */
+
+
+    document
+        .querySelectorAll(
+            ".language-btn"
+        )
+        .forEach(
+            function(button) {
+
+                button.classList.toggle(
+                    "active",
+                    button.dataset.lang === language
+                );
+
+            }
+        );
 
 
     localStorage.setItem(
         "language",
         language
     );
+
 }
 
 
-/* FORM GÖNDƏRİLƏNDƏ */
+
+/* =====================================================
+   PASTE
+====================================================== */
+
 
 document
-    .getElementById("form")
-    .addEventListener("submit", function () {
-
-        const language =
-            localStorage.getItem("language") || "az";
-
-        document.getElementById("btn").textContent =
-            translations[language].loading;
-
-        document.getElementById("btn").disabled = true;
-
-    });
+    .getElementById(
+        "pasteButton"
+    )
+    .addEventListener(
+        "click",
+        async function() {
 
 
-/* SON SEÇİLƏN DİL */
+            try {
+
+
+                const text =
+                    await navigator
+                        .clipboard
+                        .readText();
+
+
+                if (!text) {
+                    return;
+                }
+
+
+                document.getElementById(
+                    "urlInput"
+                ).value =
+                    text;
+
+
+                const language =
+                    localStorage.getItem(
+                        "language"
+                    ) || "az";
+
+
+                document.getElementById(
+                    "pasteText"
+                ).textContent =
+                    translations[
+                        language
+                    ].pasted;
+
+
+                setTimeout(
+                    function() {
+
+                        document.getElementById(
+                            "pasteText"
+                        ).textContent =
+                            translations[
+                                language
+                            ].paste;
+
+                    },
+                    1500
+                );
+
+
+            } catch (error) {
+
+
+                document.getElementById(
+                    "urlInput"
+                ).focus();
+
+            }
+
+        }
+    );
+
+
+
+/* =====================================================
+   FORM
+====================================================== */
+
+
+document
+    .getElementById(
+        "form"
+    )
+    .addEventListener(
+        "submit",
+        function(event) {
+
+
+            const input =
+                document.getElementById(
+                    "urlInput"
+                );
+
+
+            const url =
+                input.value.trim();
+
+
+            const language =
+                localStorage.getItem(
+                    "language"
+                ) || "az";
+
+
+            const error =
+                document.getElementById(
+                    "errorMessage"
+                );
+
+
+            /* URL YOXLAMA */
+
+
+            if (
+                !url ||
+                !url.toLowerCase().includes(
+                    "instagram.com"
+                )
+            ) {
+
+
+                event.preventDefault();
+
+
+                error.textContent =
+                    translations[
+                        language
+                    ].invalid;
+
+
+                error.classList.remove(
+                    "hidden"
+                );
+
+
+                input.focus();
+
+
+                return;
+
+            }
+
+
+            /* HIDDEN INPUT */
+
+
+            document.getElementById(
+                "hiddenUrl"
+            ).value =
+                url;
+
+
+            /* ERROR GİZLƏT */
+
+
+            error.classList.add(
+                "hidden"
+            );
+
+
+            /* BUTTON */
+
+
+            const button =
+                document.getElementById(
+                    "downloadButton"
+                );
+
+
+            button.disabled =
+                true;
+
+
+            document.getElementById(
+                "buttonText"
+            ).textContent =
+                translations[
+                    language
+                ].loading;
+
+
+            /* LOADING GÖSTƏR */
+
+
+            document.getElementById(
+                "loadingArea"
+            ).classList.remove(
+                "hidden"
+            );
+
+        }
+    );
+
+
+
+/* =====================================================
+   INPUT DƏYİŞƏNDƏ ERROR GİZLƏT
+====================================================== */
+
+
+document
+    .getElementById(
+        "urlInput"
+    )
+    .addEventListener(
+        "input",
+        function() {
+
+            document.getElementById(
+                "errorMessage"
+            ).classList.add(
+                "hidden"
+            );
+
+        }
+    );
+
+
+
+/* =====================================================
+   SAVED LANGUAGE
+====================================================== */
+
 
 const savedLanguage =
-    localStorage.getItem("language") || "az";
+    localStorage.getItem(
+        "language"
+    ) || "az";
 
-changeLanguage(savedLanguage);
+
+changeLanguage(
+    savedLanguage
+);
+
 
 </script>
 
+
 </body>
+
 </html>
