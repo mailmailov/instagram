@@ -1,420 +1,57 @@
-* {
-    box-sizing: border-box;
-}
-
-html,
-body {
-    margin: 0;
-    padding: 0;
-    min-height: 100%;
-}
-
-body {
-    background: #0f0f0f;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
 /* =========================
-   ANA SƏHİFƏ
+   DİL SEÇİMİ
 ========================= */
 
-.card {
-    width: min(92%, 560px);
-    margin: 70px auto;
-    padding: 35px;
-    background: #1c1c1c;
-    border-radius: 22px;
-    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.45);
-    text-align: center;
-}
-
-.icon {
-    width: 64px;
-    height: 64px;
-
-    margin: 0 auto 18px;
-
+.language-box {
     display: flex;
-    align-items: center;
-    justify-content: center;
 
-    border-radius: 50%;
+    justify-content: flex-end;
 
-    background: #e1306c;
+    gap: 6px;
 
-    font-size: 28px;
+    margin-bottom: 15px;
 }
 
-.card h1 {
-    margin: 0 0 10px;
-    font-size: 30px;
-}
+.language-btn {
+    width: auto;
 
-.card p {
-    color: #aaa;
-    margin: 0 0 28px;
-}
+    margin: 0;
 
-/* INPUT */
-
-form {
-    width: 100%;
-}
-
-input[type="url"] {
-    width: 100%;
-
-    padding: 16px;
+    padding: 7px 10px;
 
     border: 1px solid #444;
-    border-radius: 12px;
+
+    border-radius: 7px;
 
     background: #111;
-    color: white;
 
-    font-size: 15px;
+    color: #aaa;
 
-    outline: none;
-}
+    font-size: 12px;
 
-input[type="url"]::placeholder {
-    color: #777;
-}
-
-input[type="url"]:focus {
-    border-color: #e1306c;
-}
-
-/* BUTTON */
-
-button {
-    width: 100%;
-
-    margin-top: 15px;
-
-    padding: 16px;
-
-    border: none;
-    border-radius: 12px;
-
-    background: #e1306c;
-
-    color: white;
-
-    font-size: 16px;
     font-weight: bold;
 
     cursor: pointer;
 }
 
-button:hover {
-    opacity: 0.9;
-}
-
-button:disabled {
-    opacity: 0.6;
-    cursor: wait;
-}
-
-/* MESSAGE */
-
-.message {
-    padding: 12px;
-
-    margin-bottom: 15px;
-
-    border-radius: 10px;
-
-    background: #2a2024;
-
-    color: #ffb4c7;
-
-    font-size: 14px;
-}
-
-/* SMALL TEXT */
-
-.card small {
-    display: block;
-
-    margin-top: 20px;
-
-    color: #777;
-
-    font-size: 12px;
-
-    line-height: 1.5;
-}
-
-
-/* =========================
-   VIDEO NƏTİCƏ SƏHİFƏSİ
-========================= */
-
-.video-page {
-    width: 100%;
-    max-width: 700px;
-
-    min-height: 100vh;
-
-    margin: 0 auto;
-
-    background: #111;
-}
-
-/* TOP BAR */
-
-.top-bar {
-    height: 58px;
-
-    display: flex;
-    align-items: center;
-
-    position: relative;
-
-    padding: 0 18px;
-
-    border-bottom: 1px solid #292929;
-}
-
-.page-title {
-    position: absolute;
-
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    font-size: 17px;
-
-    font-weight: 600;
-}
-
-.back-btn {
-    color: white;
-
-    text-decoration: none;
-
-    font-size: 15px;
-}
-
-/* VIDEO */
-
-.video-container {
-    width: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background: #000;
-
-    padding: 12px;
-}
-
-.video-player {
-    display: block;
-
-    width: auto;
-
-    max-width: 100%;
-
-    height: auto;
-
-    max-height: 68vh;
-
-    background: #000;
-
-    border-radius: 12px;
-
-    object-fit: contain;
-}
-
-/* VIDEO INFO */
-
-.video-info {
-    text-align: center;
-
-    padding: 24px 20px 35px;
-}
-
-.success-icon {
-    width: 42px;
-    height: 42px;
-
-    margin: 0 auto 12px;
-
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 50%;
-
-    background: #24a148;
-
-    font-size: 22px;
-}
-
-.video-info h1 {
-    margin: 0;
-
-    font-size: 23px;
-}
-
-.video-info p {
-    color: #999;
-
-    font-size: 14px;
-
-    line-height: 1.5;
-
-    margin: 9px 0 20px;
-}
-
-/* DOWNLOAD BUTTON */
-
-.download-button {
-    display: block;
-
-    width: 100%;
-
-    padding: 14px 18px;
-
-    border-radius: 10px;
-
+.language-btn:hover {
     background: #e1306c;
 
     color: white;
 
-    text-decoration: none;
-
-    font-size: 16px;
-
-    font-weight: bold;
-
-    margin-bottom: 12px;
+    border-color: #e1306c;
 }
-
-.download-button:active {
-    transform: scale(0.98);
-}
-
-/* NEW VIDEO */
-
-.new-video {
-    display: block;
-
-    color: #aaa;
-
-    text-decoration: none;
-
-    font-size: 14px;
-
-    padding: 8px;
-}
-
-
-/* =========================
-   MOBİL
-========================= */
 
 @media (max-width: 600px) {
 
-    .card {
-        width: calc(100% - 28px);
-
-        margin: 35px auto;
-
-        padding: 25px 18px;
-
-        border-radius: 18px;
+    .language-box {
+        margin-bottom: 12px;
     }
 
-    .icon {
-        width: 55px;
-        height: 55px;
+    .language-btn {
+        padding: 6px 9px;
 
-        font-size: 24px;
-
-        margin-bottom: 15px;
+        font-size: 11px;
     }
 
-    .card h1 {
-        font-size: 25px;
-    }
-
-    .card p {
-        font-size: 14px;
-    }
-
-    input[type="url"] {
-        padding: 15px;
-
-        font-size: 14px;
-    }
-
-    button {
-        padding: 15px;
-
-        font-size: 15px;
-    }
-
-    /* VIDEO */
-
-    .video-page {
-        max-width: 100%;
-    }
-
-    .top-bar {
-        height: 54px;
-    }
-
-    .video-container {
-        padding: 8px;
-    }
-
-    .video-player {
-        max-width: 100%;
-
-        max-height: 62vh;
-
-        border-radius: 10px;
-    }
-
-    .video-info {
-        padding: 20px 16px 28px;
-    }
-
-    .video-info h1 {
-        font-size: 21px;
-    }
-
-    .download-button {
-        padding: 15px;
-
-        font-size: 15px;
-    }
-}
-
-
-/* =========================
-   ÇOX KİÇİK TELEFONLAR
-========================= */
-
-@media (max-width: 380px) {
-
-    .card {
-        margin: 20px auto;
-
-        padding: 22px 15px;
-    }
-
-    .card h1 {
-        font-size: 22px;
-    }
-
-    .video-player {
-        max-height: 58vh;
-    }
 }
